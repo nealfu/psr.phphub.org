@@ -1,30 +1,6 @@
-# 「PSR 规范」PSR-2 编码风格规范
-
-## 编码风格指南
-
-本篇规范是 [PSR-1][] 基本代码规范的继承与扩展。
-
-本规范希望通过制定一系列规范化PHP代码的规则，以减少在浏览不同作者的代码时，因代码风格的不同而造成不便。
-
-当多名程序员在多个项目中合作时，就需要一个共同的编码规范，
-而本文中的风格规范源自于多个不同项目代码风格的共同特性，
-因此，本规范的价值在于我们都遵循这个编码风格，而不是在于它本身。
-
-## 关于「能愿动词」的使用
-
-为了避免歧义，文档大量使用了「能愿动词」，对应的解释如下：
-
-* `必须 (MUST)`：绝对，严格遵循，请照做，无条件遵守；
-* `一定不可 (MUST NOT)`：禁令，严令禁止；
-* `应该 (SHOULD)` ：强烈建议这样做，但是不强求；
-* `不该 (SHOULD NOT)`：强烈不建议这样做，但是不强求；
-* `可以 (MAY)` 和 `可选 (OPTIONAL)` ：选择性高一点，在这个文档内，此词语使用较少；
-
-> 参见：[RFC 2119](http://www.ietf.org/rfc/rfc2119.txt)
+# 「PHP 规范」PHP-2 编码风格规范
 
 ## 1. 概览
-
-- 代码 **必须** 遵循 [PSR-1]() 中的编码规范 。
 
 - 代码 **必须** 使用4个空格符而不是「Tab 键」进行缩进。
 
@@ -78,11 +54,7 @@ class Foo extends Bar implements FooInterface
 
 ## 2. 通则
 
-### 2.1 基本编码准则
-
-代码 **必须** 符合 [PSR-1]() 中的所有规范。
-
-### 2.2 文件
+### 2.1. 文件
 
 所有PHP文件 **必须** 使用 `Unix LF (linefeed)` 作为行的结束符。
 
@@ -90,13 +62,11 @@ class Foo extends Bar implements FooInterface
 
 纯PHP代码文件 **必须** 省略最后的 `?>` 结束标签。
 
-### 2.3. 行
+### 2.2. 行
 
-行的长度 **一定不可** 有硬性的约束。
+行的长度 **必须** 在 120 个字符以内。
 
-软性的长度约束 **必须** 要限制在 120 个字符以内，若超过此长度，带代码规范检查的编辑器 **必须** 要发出警告，不过 **一定不可** 发出错误提示。
-
-每行 **不该** 多于80个字符，大于80字符的行 **应该** 折成多行。
+每行 **不该** 多于 80 个字符，大于 80 字符的行 **应该** 折成多行。
 
 非空行后 **一定不可** 有多余的空格符。
 
@@ -104,15 +74,15 @@ class Foo extends Bar implements FooInterface
 
 每行 **一定不可** 存在多于一条语句。
 
-### 2.4. 缩进
+### 2.3. 缩进
 
-代码 **必须** 使用4个空格符的缩进，**一定不可** 用 tab键。
+代码 **必须** 使用 4 个空格符的缩进，**一定不可** 用 tab 键。
 
 > 备注：使用空格而不是「tab键缩进」的好处在于，
 > 避免在比较代码差异、打补丁、重阅代码以及注释时产生混淆。
 > 并且，使用空格缩进，让对齐变得更方便。
 
-### 2.5. 关键字 以及 True/False/Null
+### 2.4. 关键字 以及 True/False/Null
 
 PHP所有 [关键字](http://php.net/manual/en/reserved.keywords.php) **必须** 全部小写。
 
@@ -516,205 +486,3 @@ $foo->bar(
     $arg3
 );
 ```
-
-
-7. 总结
---------------
-以上规范难免有疏忽，其中包括但不仅限于：
-
-- 全局变量和常量的定义
-
-- 函数的定义
-
-- 操作符和赋值
-
-- 行内对齐
-
-- 注释和文档描述块
-
-- 类名的前缀及后缀
-
-- 最佳实践
-
-本规范之后的修订与扩展将弥补以上不足。
-
-## 附录 A. 问卷调查
-
-为了编写本规范，小组制定了调查问卷，用来统计各成员项目的共同规范。
-以下是此问卷调查的数据，在此供查阅。
-
-### A.1. 问卷数据
-
-    url,http://www.horde.org/apps/horde/docs/CODING_STANDARDS,http://pear.php.net/manual/en/standards.php,http://solarphp.com/manual/appendix-standards.style,http://framework.zend.com/manual/en/coding-standard.html,http://symfony.com/doc/2.0/contributing/code/standards.html,http://www.ppi.io/docs/coding-standards.html,https://github.com/ezsystems/ezp-next/wiki/codingstandards,http://book.cakephp.org/2.0/en/contributing/cakephp-coding-conventions.html,https://github.com/UnionOfRAD/lithium/wiki/Spec%3A-Coding,http://drupal.org/coding-standards,http://code.google.com/p/sabredav/,http://area51.phpbb.com/docs/31x/coding-guidelines.html,https://docs.google.com/a/zikula.org/document/edit?authkey=CPCU0Us&hgd=1&id=1fcqb93Sn-hR9c0mkN6m_tyWnmEvoswKBtSc0tKkZmJA,http://www.chisimba.com,n/a,https://github.com/Respect/project-info/blob/master/coding-standards-sample.php,n/a,Object Calisthenics for PHP,http://doc.nette.org/en/coding-standard,http://flow3.typo3.org,https://github.com/propelorm/Propel2/wiki/Coding-Standards,http://developer.joomla.org/coding-standards.html
-    voting,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,no,no,no,?,yes,no,yes
-    indent_type,4,4,4,4,4,tab,4,tab,tab,2,4,tab,4,4,4,4,4,4,tab,tab,4,tab
-    line_length_limit_soft,75,75,75,75,no,85,120,120,80,80,80,no,100,80,80,?,?,120,80,120,no,150
-    line_length_limit_hard,85,85,85,85,no,no,no,no,100,?,no,no,no,100,100,?,120,120,no,no,no,no
-    class_names,studly,studly,studly,studly,studly,studly,studly,studly,studly,studly,studly,lower_under,studly,lower,studly,studly,studly,studly,?,studly,studly,studly
-    class_brace_line,next,next,next,next,next,same,next,same,same,same,same,next,next,next,next,next,next,next,next,same,next,next
-    constant_names,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper,upper
-    true_false_null,lower,lower,lower,lower,lower,lower,lower,lower,lower,upper,lower,lower,lower,upper,lower,lower,lower,lower,lower,upper,lower,lower
-    method_names,camel,camel,camel,camel,camel,camel,camel,camel,camel,camel,camel,lower_under,camel,camel,camel,camel,camel,camel,camel,camel,camel,camel
-    method_brace_line,next,next,next,next,next,same,next,same,same,same,same,next,next,same,next,next,next,next,next,same,next,next
-    control_brace_line,same,same,same,same,same,same,next,same,same,same,same,next,same,same,next,same,same,same,same,same,same,next
-    control_space_after,yes,yes,yes,yes,yes,no,yes,yes,yes,yes,no,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes
-    always_use_control_braces,yes,yes,yes,yes,yes,yes,no,yes,yes,yes,no,yes,yes,yes,yes,no,yes,yes,yes,yes,yes,yes
-    else_elseif_line,same,same,same,same,same,same,next,same,same,next,same,next,same,next,next,same,same,same,same,same,same,next
-    case_break_indent_from_switch,0/1,0/1,0/1,1/2,1/2,1/2,1/2,1/1,1/1,1/2,1/2,1/1,1/2,1/2,1/2,1/2,1/2,1/2,0/1,1/1,1/2,1/2
-    function_space_after,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
-    closing_php_tag_required,no,no,no,no,no,no,no,no,yes,no,no,no,no,yes,no,no,no,no,no,yes,no,no
-    line_endings,LF,LF,LF,LF,LF,LF,LF,LF,?,LF,?,LF,LF,LF,LF,?,,LF,?,LF,LF,LF
-    static_or_visibility_first,static,?,static,either,either,either,visibility,visibility,visibility,either,static,either,?,visibility,?,?,either,either,visibility,visibility,static,?
-    control_space_parens,no,no,no,no,no,no,yes,no,no,no,no,no,no,yes,?,no,no,no,no,no,no,no
-    blank_line_after_php,no,no,no,no,yes,no,no,no,no,yes,yes,no,no,yes,?,yes,yes,no,yes,no,yes,no
-    class_method_control_brace,next/next/same,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/next,same/same/same,same/same/same,same/same/same,same/same/same,next/next/next,next/next/same,next/same/same,next/next/next,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/same,next/next/next
-
-### A.2. 问卷说明
-
-`indent_type`:
-缩进类型. `tab` = "使用 tab 键一次", `2` or `4` = "空格的数量"
-
-`line_length_limit_soft`:
-每行字符数量的“软”限制. `?` = 不可辩或无作答, `no` 表示无限制.
-
-`line_length_limit_hard`:
-每行字符数量的“硬”限制. `?` = 不可辩或无作答, `no` 表示无限制.
-
-`class_names`:
-类名称的命名. `lower` = 只允许小写字母, `lower_under` = 下滑线分隔的小写字母, `studly` = StudlyCase 的驼峰风格.
-
-`class_brace_line`:
-类的开始花括号是与 class 关键字在同一行或是在其的下一行？
-
-`constant_names`:
-类的常量如何命名? `upper` = 下划线分隔的大写字母.
-
-`true_false_null`:
-关键字 `true`、`false` 以及 `null` 是全部小写 `lower` 还是全部大写 `upper`?
-
-`method_names`:
-方法名称如何命名? `camel` = `camelCase`, `lower_under` = 下划线分隔的小写字母.
-
-`method_brace_line`:
-方法的开始花括号是与方法名在同一行还是在其的下一行？
-
-`control_brace_line`:
-控制结构的开始花括号是与声明在同一行还是在其的下一行？
-
-`control_space_after`:
-控制结构关键词后是否有空格？
-
-`always_use_control_braces`:
-控制结构体是否都要被包含在花括号内？
-
-`else_elseif_line`:
-`else` 或 `elseif` 与前面的结束花括号在同一行还是在其的下一行？
-
-`case_break_indent_from_switch`:
-`switch` 语句中的 `case` 和 `break` 需要相对 `switch` 缩进多少次？
-
-`function_space_after`:
-函数调用语句中，函数名称与变量列表的左括号间是否有空格？
-
-`closing_php_tag_required`:
-纯 PHP 代码的文件，是否需要 `?>` 结束标签？
-
-`line_endings`:
-选择哪种类型的行结束符？
-
-`static_or_visibility_first`:
-声明一个静态方法时，`static` 是写访问修饰符前还是后？
-
-`control_space_parens`:
-控制结构里，左括号后以及右括号前是否有空格？`yes` = `if ( $expr )`, `no` = `if ($expr)`.
-
-`blank_line_after_php`:
-PHP 开始标签后，是否需要一个空行？
-
-`class_method_control_brace`:
-开始花括号在类、方法和控制结构的位置统计。
-
-### A.3. 问卷统计结果
-
-    indent_type:
-        tab: 7
-        2: 1
-        4: 14
-    line_length_limit_soft:
-        ?: 2
-        no: 3
-        75: 4
-        80: 6
-        85: 1
-        100: 1
-        120: 4
-        150: 1
-    line_length_limit_hard:
-        ?: 2
-        no: 11
-        85: 4
-        100: 3
-        120: 2
-    class_names:
-        ?: 1
-        lower: 1
-        lower_under: 1
-        studly: 19
-    class_brace_line:
-        next: 16
-        same: 6
-    constant_names:
-        upper: 22
-    true_false_null:
-        lower: 19
-        upper: 3
-    method_names:
-        camel: 21
-        lower_under: 1
-    method_brace_line:
-        next: 15
-        same: 7
-    control_brace_line:
-        next: 4
-        same: 18
-    control_space_after:
-        no: 2
-        yes: 20
-    always_use_control_braces:
-        no: 3
-        yes: 19
-    else_elseif_line:
-        next: 6
-        same: 16
-    case_break_indent_from_switch:
-        0/1: 4
-        1/1: 4
-        1/2: 14
-    function_space_after:
-        no: 22
-    closing_php_tag_required:
-        no: 19
-        yes: 3
-    line_endings:
-        ?: 5
-        LF: 17
-    static_or_visibility_first:
-        ?: 5
-        either: 7
-        static: 4
-        visibility: 6
-    control_space_parens:
-        ?: 1
-        no: 19
-        yes: 2
-    blank_line_after_php:
-        ?: 1
-        no: 13
-        yes: 8
-    class_method_control_brace:
-        next/next/next: 4
-        next/next/same: 11
-        next/same/same: 1
-        same/same/same: 6
-
-

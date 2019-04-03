@@ -1,32 +1,10 @@
-# 「PSR 规范」PSR-3 日志接口规范
-
-## 日志接口规范
-
-本文制定了日志类库的通用接口规范。
-
-本规范的主要目的，是为了让日志类库以简单通用的方式，通过接收一个 `Psr\Log\LoggerInterface` 对象，来记录日志信息。
-框架以及CMS内容管理系统如有需要，**可以** 对此接口进行扩展，但需遵循本规范，
-这才能保证在使用第三方的类库文件时，日志接口仍能正常对接。
-
-## 关于「能愿动词」的使用
-
-为了避免歧义，文档大量使用了「能愿动词」，对应的解释如下：
-
-* `必须 (MUST)`：绝对，严格遵循，请照做，无条件遵守；
-* `一定不可 (MUST NOT)`：禁令，严令禁止；
-* `应该 (SHOULD)` ：强烈建议这样做，但是不强求；
-* `不该 (SHOULD NOT)`：强烈不建议这样做，但是不强求；
-* `可以 (MAY)` 和 `可选 (OPTIONAL)` ：选择性高一点，在这个文档内，此词语使用较少；
-
-> 参见：[RFC 2119](http://www.ietf.org/rfc/rfc2119.txt)
+# 「PHP 规范」PHP-3 日志规范
 
 ## 1. 规范说明
 
 ### 1.1 基本规范
 
-- `LoggerInterface` 接口对外定义了八个方法，分别用来记录 [RFC 5424](http://tools.ietf.org/html/rfc5424) 中定义的八个等级的日志：debug、 info、 notice、 warning、 error、 critical、 alert 以及 emergency 。
-
-- 第九个方法 —— `log`，其第一个参数为记录的等级。可使用一个预先定义的等级常量作为参数来调用此方法，**必须** 与直接调用以上八个方法具有相同的效果。如果传入的等级常量参数没有预先定义，则 **必须** 抛出 `Psr\Log\InvalidArgumentException` 类型的异常。在不确定的情况下，使用者 **不该** 使用未支持的等级常量来调用此方法。
+- PSR-3 日志接口规范中定义了八个方法，分别用来记录 [RFC 5424](http://tools.ietf.org/html/rfc5424) 中定义的八个等级的日志：debug、 info、 notice、 warning、 error、 critical、 alert 以及 emergency 。
 
 ### 1.2 记录信息
 
@@ -94,167 +72,24 @@
 
 - `Psr\Log\LogLevel` 类装载了八个记录等级常量。
 
-## 2. 包
+## 2. 日志级别和含义
 
-上述的接口、类和相关的异常类，以及一系列的实现检测文件，都包含在 [psr/log](https://packagist.org/packages/psr/log) 文件包中。
-
-## 3. `Psr\Log\LoggerInterface`
-
-```php
-<?php
-
-namespace Psr\Log;
-
-/**
- * 日志记录实例
- *
- * 日志信息变量 —— message，**必须** 是一个字符串或是实现了 __toString() 方法的对象。
- *
- * 日志信息变量中 **可以** 包含格式如 “{foo}” (代表 foo) 的占位符，
- * 它将会由上下文数组中键名为「foo」的键值替代。
- *
- * 上下文数组可以携带任意的数据，唯一的限制是，当它携带的是一个 exception 对象时，它的键名 **必须** 是 "exception"。
- *
- * 详情可参阅： https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-3-logger-interface-cn.md
- */
-interface LoggerInterface
-{
-    /**
-     * 系统不可用
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function emergency($message, array $context = array());
-
-    /**
-     *  **必须** 立刻采取行动
-     *
-     * 例如：在整个网站都垮掉了、数据库不可用了或者其他的情况下， **应该** 发送一条警报短信把你叫醒。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function alert($message, array $context = array());
-
-    /**
-     * 紧急情况
-     *
-     * 例如：程序组件不可用或者出现非预期的异常。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function critical($message, array $context = array());
-
-    /**
-     * 运行时出现的错误，不需要立刻采取行动，但必须记录下来以备检测。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function error($message, array $context = array());
-
-    /**
-     * 出现非错误性的异常。
-     *
-     * 例如：使用了被弃用的API、错误地使用了API或者非预想的不必要错误。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function warning($message, array $context = array());
-
-    /**
-     * 一般性重要的事件。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function notice($message, array $context = array());
-
-    /**
-     * 重要事件
-     *
-     * 例如：用户登录和SQL记录。
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function info($message, array $context = array());
-
-    /**
-     * debug 详情
-     *
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function debug($message, array $context = array());
-
-    /**
-     * 任意等级的日志记录
-     *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return null
-     */
-    public function log($level, $message, array $context = array());
-}
-```
-
-## 4. `Psr\Log\LoggerAwareInterface`
-
-
-```php
-<?php
-
-namespace Psr\Log;
-
-/**
- * logger-aware 定义实例
- */
-interface LoggerAwareInterface
-{
-    /**
-     * 设置一个日志记录实例
-     *
-     * @param LoggerInterface $logger
-     * @return null
-     */
-    public function setLogger(LoggerInterface $logger);
-}
-```
-
-## 5. `Psr\Log\LogLevel`
-
-```php
-<?php
-
-namespace Psr\Log;
-
-/**
- * 日志等级常量定义
- */
-class LogLevel
-{
-    const EMERGENCY = 'emergency';
-    const ALERT     = 'alert';
-    const CRITICAL  = 'critical';
-    const ERROR     = 'error';
-    const WARNING   = 'warning';
-    const NOTICE    = 'notice';
-    const INFO      = 'info';
-    const DEBUG     = 'debug';
-}
-```
-
-
+- emergency
+    - 系统不可用
+- alert
+    - **必须** 立刻采取行动
+    - 例如：在整个网站都垮掉了、数据库不可用了或者其他的情况下， **应该** 发送一条警报短信把你叫醒。
+- critical
+    - 紧急情况
+    - 例如：程序组件不可用或者出现非预期的异常。
+- error
+    - 运行时出现的错误，不需要立刻采取行动，但必须记录下来以备检测。
+- warning
+    - 出现非错误性的异常。
+    - 例如：使用了被弃用的API、错误地使用了API或者非预想的不必要错误。
+- notice
+    - 一般性重要的事件。
+- info
+    - 例如：用户登录和SQL记录。
+- debug
+    - debug 详情
