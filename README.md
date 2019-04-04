@@ -13,6 +13,11 @@
   </a>
   </li>
   <li>
+  <a href="./PHP/PHP-3 异常规范.md">
+    PHP-3 异常规范
+  </a>
+  </li>
+  <li>
   <a href="./PHP/PHP-3 日志规范.md">
     PHP-3 日志规范
   </a>
